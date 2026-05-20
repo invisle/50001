@@ -37,6 +37,7 @@ namespace kalingasan
         int o2 = orientation(a, b, d);
         int o3 = orientation(c, d, a);
         int o4 = orientation(c, d, b);
+
         if (o1 != o2 && o3 != o4)
         {
             return true;
@@ -63,11 +64,13 @@ namespace kalingasan
     {
         const auto& points = polygon.points_;
         if (points.size() < 3) return false;
+
         int count = 0;
         for (size_t i = 0; i < points.size(); ++i)
         {
             const Point& a = points[i];
             const Point& b = points[(i + 1) % points.size()];
+
             if (onSegment(point, a, b))
             {
                 return true;
@@ -107,6 +110,11 @@ namespace kalingasan
         {
             return true;
         }
+        if (std::any_of(a.points_.begin(), a.points_.end(),
+            [&b](const Point& p) { return pointInPolygon(p, b); }))
+        {
+            return true;
+        }
         return false;
     }
     bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss)
@@ -114,6 +122,7 @@ namespace kalingasan
         std::string argument;
         iss >> argument;
         double result = 0.0;
+
         if (argument.empty())
         {
             return false;
@@ -122,7 +131,7 @@ namespace kalingasan
         {
             result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
                 [](double sum, const Polygon& polygon) {
-                    return sum + (isEven(polygon) ? area(polygon) : 0);
+                    return sum + (isEven(polygon) ? area(polygon) : 0.0);
                 });
             std::cout << std::fixed << std::setprecision(1) << result << std::endl;
         }
@@ -130,7 +139,7 @@ namespace kalingasan
         {
             result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
                 [](double sum, const Polygon& polygon) {
-                    return sum + (isEven(polygon) ? 0 : area(polygon));
+                    return sum + (isEven(polygon) ? 0.0 : area(polygon));
                 });
             std::cout << std::fixed << std::setprecision(1) << result << std::endl;
         }
@@ -188,7 +197,6 @@ namespace kalingasan
         }
         return true;
     }
-
     bool handleMinimum(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string argument;
@@ -219,12 +227,12 @@ namespace kalingasan
     {
         std::string argument;
         iss >> argument;
-        size_t count;
         if (argument.empty())
         {
             std::cout << ERROR << std::endl;
             return false;
         }
+        size_t count;
         if (argument == "EVEN")
         {
             count = std::count_if(polygons.begin(), polygons.end(),
@@ -247,7 +255,7 @@ namespace kalingasan
                 std::cout << ERROR << std::endl;
                 return false;
             }
-            size_t count = std::count_if(polygons.begin(), polygons.end(),
+            count = std::count_if(polygons.begin(), polygons.end(),
                 VertexCountEqual{ vertexCount });
             std::cout << count << std::endl;
         }
@@ -282,12 +290,11 @@ namespace kalingasan
             std::cout << ERROR << std::endl;
             return false;
         }
-
-        size_t count = std::count_if(polygons.begin(), polygons.end(),
+        size_t cnt = std::count_if(polygons.begin(), polygons.end(),
             [&target](const Polygon& p) {
                 return polygonsIntersect(p, target);
             });
-        std::cout << count << std::endl;
+        std::cout << cnt << std::endl;
         return true;
     }
 }
