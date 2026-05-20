@@ -70,7 +70,6 @@ namespace kalingasan
         {
             const Point& a = points[i];
             const Point& b = points[(i + 1) % points.size()];
-
             if (onSegment(point, a, b))
             {
                 return true;
@@ -117,6 +116,64 @@ namespace kalingasan
         }
         return false;
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+	bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss)
+	{
+		std::string argument;
+		iss >> argument;
+		double result = 0.0;
+		if (argument.empty())
+		{
+			return false;
+		}
+		else if (argument == "EVEN")
+		{
+			result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
+				[](double sum, const Polygon& polygon) {
+					return sum + (isEven(polygon) ? area(polygon) : 0);
+				});
+			std::cout << std::fixed << std::setprecision(1) << result << std::endl;
+		}
+		else if (argument == "ODD")
+		{
+			result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
+				[](double sum, const Polygon& polygon) {
+					return sum + (isEven(polygon) ? 0 : area(polygon));
+				});
+			std::cout << std::fixed << std::setprecision(1) << result << std::endl;
+		}
+		else if (argument == "MEAN")
+		{
+			if (polygons.empty())
+			{
+				return false;
+			}
+			result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
+				[](double acc, const Polygon& p) { return acc + area(p); });
+			std::cout << std::fixed << std::setprecision(1) << result / polygons.size() << std::endl;
+		}
+		else
+		{
+			size_t vertexCount;
+			try {
+				vertexCount = std::stoul(argument);
+			}
+			catch (...) {
+				std::cout << ERROR << std::endl;
+				return false;
+			}
+			result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
+				[vertexCount](double sum, const Polygon& polygon) {
+					return sum + (polygon.points_.size() == vertexCount ? area(polygon) : 0.0);
+				});
+			std::cout << std::fixed << std::setprecision(1) << result << std::endl;
+		}
+        return true;
+	}
+=======
+=======
+>>>>>>> 0ef85294869605476a6f2aec621b1b257d3e3684
     bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string argument;
@@ -171,6 +228,10 @@ namespace kalingasan
         }
         return true;
     }
+<<<<<<< HEAD
+>>>>>>> 46779e6045f8cade9cb5bf9d950e0a5c5f6c92fa
+=======
+>>>>>>> 0ef85294869605476a6f2aec621b1b257d3e3684
     bool handleMaximum(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string argument;
