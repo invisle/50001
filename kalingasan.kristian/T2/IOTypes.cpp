@@ -45,6 +45,10 @@ namespace kalingasan
                 in.setstate(std::ios::failbit);
             }
         }
+        else
+        {
+            in.setstate(std::ios::failbit);
+        }
         dest.ref = key;
         return in;
     }
