@@ -258,12 +258,13 @@ namespace kalingasan
             try {
                 vertexCount = std::stoul(argument);
             }
-            if (vertexCount < 3)
+            catch (...) 
             {
                 std::cout << ERROR << std::endl;
                 return false;
             }
-            catch (...) {
+            if (vertexCount < 3)
+            {
                 std::cout << ERROR << std::endl;
                 return false;
             }
