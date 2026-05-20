@@ -6,7 +6,7 @@
 #include <functional>
 namespace kalingasan
 {
-	bool isEven(const Polygon& polygon);
+    bool isEven(const Polygon& polygon);
     bool isOdd(const Polygon& polygon);
     bool parsePolygonFromString(const std::string& str, Polygon& out);
     int orientation(const Point& a, const Point& b, const Point& c);
@@ -14,8 +14,8 @@ namespace kalingasan
     bool segmentsIntersect(const Point& a, const Point& b, const Point& c, const Point& d);
     bool polygonsIntersect(const Polygon& a, const Polygon& b);
     bool pointInPolygon(const Point& p, const Polygon& poly);
-	bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss);
-	bool handleMaximum(const std::vector<Polygon>& polygons, std::istringstream& iss);
+    bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss);
+    bool handleMaximum(const std::vector<Polygon>& polygons, std::istringstream& iss);
     bool handleMinimum(const std::vector<Polygon>& polygons, std::istringstream& iss);
     bool handleCount(const std::vector<Polygon>& polygons, std::istringstream& iss);
     bool handleRmecho(std::vector<Polygon>& polygons, std::istringstream& iss);
