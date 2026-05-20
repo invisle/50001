@@ -1,16 +1,16 @@
-﻿#include <vector>
-#include <iterator>
-#include <sstream>
-#include <iostream>
+﻿#include "dataStruct.h"
+#include <vector>
 #include <algorithm>
+#include <iterator>
+#include <iostream>
 #include <limits>
-#include "DataStruct.hpp"
 
 int main()
 {
-    using kalingasan::DataStruct;
+    using kirsanov::DataStruct;
+
     std::vector<DataStruct> data;
-    //std::istringstream iss("(:key1 10ull:key2 #c(1.0 -1.0):key3 \"Data\":)");
+
     while (!std::cin.eof())
     {
         std::copy(
@@ -18,16 +18,23 @@ int main()
             std::istream_iterator<DataStruct>(),
             std::back_inserter(data)
         );
+
         if (!std::cin.eof() && std::cin.fail())
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
+
+    // Сортируем записи через std::sort, используя собственный компаратор
     std::sort(data.begin(), data.end());
+
+    // Выводим отсортированные записи в поток std::cout
     std::copy(
         data.begin(),
         data.end(),
-        std::ostream_iterator<DataStruct>(std::cout)
+        std::ostream_iterator<DataStruct>(std::cout, "\n")
     );
+
+    return 0;
 }

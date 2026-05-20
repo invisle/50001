@@ -47,7 +47,7 @@ int main(int argc, char* argv[])
             {
                 continue;
             }
-            std::transform(command.begin(), command.end(), command.begin(), std::toupper);
+            std::transform(command.begin(), command.end(), command.begin(), [](unsigned char c) { return std::toupper(c); });
             if (command == "AREA")
             {
                 handleArea(polygons, iss);

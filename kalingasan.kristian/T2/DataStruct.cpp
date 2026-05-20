@@ -72,7 +72,7 @@ namespace kalingasan
         iofmtguard fmtguard(out);
         out << "(:key1 " << src.key1 << "ll:key2 #c(";
         out << std::fixed << std::setprecision(1) << src.key2.real() << ' ' << src.key2.imag();
-        out << "):key3 \"" << src.key3 << "\":)";
+        out << "):key3 \"" << src.key3 << "\":)\n";
         return out;
     }
 
