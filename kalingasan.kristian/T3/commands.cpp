@@ -149,6 +149,7 @@ namespace kalingasan
         {
             if (polygons.empty())
             {
+                std::cout << ERROR << std::endl;
                 return false;
             }
             result = std::accumulate(polygons.begin(), polygons.end(), 0.0,
@@ -162,6 +163,11 @@ namespace kalingasan
                 vertexCount = std::stoul(argument);
             }
             catch (...) {
+                std::cout << ERROR << std::endl;
+                return false;
+            }
+            if (vertexCount < 3)
+            {
                 std::cout << ERROR << std::endl;
                 return false;
             }
@@ -251,6 +257,11 @@ namespace kalingasan
             size_t vertexCount;
             try {
                 vertexCount = std::stoul(argument);
+            }
+            if (vertexCount < 3)
+            {
+                std::cout << ERROR << std::endl;
+                return false;
             }
             catch (...) {
                 std::cout << ERROR << std::endl;
