@@ -31,12 +31,6 @@ namespace kalingasan
             }
             points.push_back(point);
         }
-        in >> std::ws;
-        if (in.peek() != EOF)
-        {
-            in.setstate(std::ios::failbit);
-            return in;
-        }
         polygon.points_ = std::move(points);
         return in;
     }
