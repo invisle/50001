@@ -258,7 +258,7 @@ namespace kalingasan
             try {
                 vertexCount = std::stoul(argument);
             }
-            catch (...) 
+            catch (...)
             {
                 std::cout << ERROR << std::endl;
                 return false;
