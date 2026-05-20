@@ -37,25 +37,6 @@ namespace kalingasan
         int o2 = orientation(a, b, d);
         int o3 = orientation(c, d, a);
         int o4 = orientation(c, d, b);
-<<<<<<< HEAD
-        if (o1 != o2 && o3 != o4) 
-        {
-            return true;
-        }
-        if (o1 == 0 && onSegment(c, a, b)) 
-        {
-            return true;
-        }
-        if (o2 == 0 && onSegment(d, a, b)) 
-        {
-            return true;
-        }
-        if (o3 == 0 && onSegment(a, c, d)) 
-        {
-            return true;
-        }
-        if (o4 == 0 && onSegment(b, c, d)) 
-=======
         if (o1 != o2 && o3 != o4)
         {
             return true;
@@ -73,7 +54,6 @@ namespace kalingasan
             return true;
         }
         if (o4 == 0 && onSegment(b, c, d))
->>>>>>> 46779e6045f8cade9cb5bf9d950e0a5c5f6c92fa
         {
             return true;
         }
@@ -89,10 +69,14 @@ namespace kalingasan
             const Point& a = points[i];
             const Point& b = points[(i + 1) % points.size()];
 <<<<<<< HEAD
+<<<<<<< HEAD
             if (onSegment(point, a, b)) 
 =======
             if (onSegment(point, a, b))
 >>>>>>> 46779e6045f8cade9cb5bf9d950e0a5c5f6c92fa
+=======
+            if (onSegment(point, a, b))
+>>>>>>> 0ef85294869605476a6f2aec621b1b257d3e3684
             {
                 return true;
             }
@@ -138,6 +122,7 @@ namespace kalingasan
         }
         return false;
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 	bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss)
 	{
@@ -193,6 +178,8 @@ namespace kalingasan
         return true;
 	}
 =======
+=======
+>>>>>>> 0ef85294869605476a6f2aec621b1b257d3e3684
     bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string argument;
@@ -246,7 +233,10 @@ namespace kalingasan
         }
         return true;
     }
+<<<<<<< HEAD
 >>>>>>> 46779e6045f8cade9cb5bf9d950e0a5c5f6c92fa
+=======
+>>>>>>> 0ef85294869605476a6f2aec621b1b257d3e3684
     bool handleMaximum(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string argument;
