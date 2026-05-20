@@ -1,9 +1,7 @@
 #include "commands.hpp"
-
 namespace kalingasan
 {
     using namespace std::placeholders;
-
 	bool isEven(const Polygon& polygon)
 	{
 		return polygon.points_.size() % 2 == 0;
@@ -39,12 +37,10 @@ namespace kalingasan
         int o2 = orientation(a, b, d);
         int o3 = orientation(c, d, a);
         int o4 = orientation(c, d, b);
-
         if (o1 != o2 && o3 != o4) 
         {
             return true;
         }
-
         if (o1 == 0 && onSegment(c, a, b)) 
         {
             return true;
@@ -61,7 +57,6 @@ namespace kalingasan
         {
             return true;
         }
-
         return false;
     }
     bool pointInPolygon(const Point& point, const Polygon& polygon)
@@ -102,10 +97,11 @@ namespace kalingasan
                 const Point& b1 = b.points_[j];
                 const Point& b2 = b.points_[(j + 1) % b.points_.size()];
                 if (segmentsIntersect(a1, a2, b1, b2))
+                {
                     return true;
+                }
             }
         }
-
         if (std::any_of(a.points_.begin(), a.points_.end(),
             [&b](const Point& p) { return pointInPolygon(p, b); }))
         {
@@ -118,7 +114,6 @@ namespace kalingasan
         }
         return false;
     }
-
 	bool handleArea(const std::vector<Polygon>& polygons, std::istringstream& iss)
 	{
 		std::string argument;
@@ -225,7 +220,6 @@ namespace kalingasan
         }
         return true;
     }
-
     bool handleCount(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string argument;
@@ -264,7 +258,6 @@ namespace kalingasan
         }
         return true;
     }
-
     bool handleRmecho(std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string rest;
@@ -284,7 +277,6 @@ namespace kalingasan
         std::cout << (oldSize - polygons.size()) << std::endl;
         return true;
     }
-
     bool handleIntersections(const std::vector<Polygon>& polygons, std::istringstream& iss)
     {
         std::string rest;
