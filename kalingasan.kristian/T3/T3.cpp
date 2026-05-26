@@ -28,11 +28,14 @@ int main(int argc, char* argv[])
             }
             std::istringstream iss(line);
             Polygon polygon;
-            if (iss >> polygon)
+            iss >> polygon;
+            Polygon empty;
+            if (!(polygon == empty))
             {
                 polygons.push_back(polygon);
             }
         }
+
         std::string commandLine;
         while (std::getline(std::cin, commandLine))
         {
@@ -47,7 +50,7 @@ int main(int argc, char* argv[])
             {
                 continue;
             }
-            std::transform(command.begin(), command.end(), command.begin(), [](unsigned char c) { return std::toupper(c); });
+            std::transform(command.begin(), command.end(), command.begin(), std::toupper);
             if (command == "AREA")
             {
                 handleArea(polygons, iss);
