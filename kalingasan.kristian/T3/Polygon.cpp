@@ -13,6 +13,7 @@ namespace kalingasan
         in >> vertexCount;
         if (!(in) || (vertexCount <= 2))
         {
+            in.setstate(std::ios::failbit);
             return in;
         }
         std::vector<Point> points;
