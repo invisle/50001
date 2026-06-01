@@ -10,8 +10,10 @@ namespace kalingasan
             return in;
         }
         size_t vertexCount;
-        if (!(in >> vertexCount))
+        in >> vertexCount;
+        if (!(in) || (vertexCount <= 2))
         {
+            in.setstate(std::ios::failbit);
             return in;
         }
         std::vector<Point> points;
@@ -25,6 +27,11 @@ namespace kalingasan
                 return in;
             }
             points.push_back(point);
+        }
+        if (in.get() != EOF)
+        {
+            in.setstate(std::ios::failbit);
+            return in;
         }
         polygon.points_ = std::move(points);
         return in;

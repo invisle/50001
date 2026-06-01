@@ -42,6 +42,6 @@ namespace kalingasan
             return polygon.points_.size() == target;
         }
     };
-    constexpr const char* ERROR = "<INVALID COMMAND>";
+    const std::string ERROR = "<INVALID COMMAND>";
 }
 #endif
